@@ -1,4 +1,7 @@
 
+var moment = require('moment'); // require
+
+
 /* var idade = 25; 
 let nome = 'Manu';
 const sobrenome = 'Vyctoria'; */
@@ -108,5 +111,40 @@ const campanhaVacina = (pet) => {
         return pets[pets.length-1];
     }
 
-    console.log(adicionarPet('Cocada', 'Gato', 2, '---', 'Paula', '(81) 99999-9999', false, ''));
+    console.log(adicionarPet('Cocada', 'Gato', 2, '---', 'Paula', '(81) 99999-9999', false, []));
+
+    console.log("ADICIONANDO SERVIÇOS")
+
+    //includes serve para ver se o array tá preenchido
+
+    const darBanhoPet = (pet) => {
+        if (!pet.servicos.includes('banho')){
+            pet.servicos.push('banho');
+            console.log(moment().format("L - LTS"));
+            console.log(`${pet.nome} está de banho tomado!`);
+        }
+    }
+
+    const tosarPet = (pet) => {
+        if (!pet.servicos.includes('tosa')){
+            pet.servicos.push('tosa');
+            console.log(moment().format("L - LTS"));
+            console.log(`${pet.nome} está com o cabelinho na régua!`);
+        }
+    }
+
+    const apararUnhasPet = (pet) => {
+        if (!pet.servicos.includes('unha')){
+            pet.servicos.push('unha');
+            console.log(moment().format("L - LTS"));
+            console.log(`${pet.nome} está de unhas aparadas!`);
+        }
+    }
+
+    apararUnhasPet(pets[2]);
+    tosarPet(pets[1]);
+    darBanhoPet(pets[3]);
+
+
+
 
