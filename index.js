@@ -55,6 +55,10 @@ listarPets();
 
 /* console.log(pet);*/
 
+/*DESAFIO PETSHOP - VACINA
+crie uma função chamada vacinarPet que recebe um pet como parametro e altera o atributo vacinado para true.
+imprima uma mensagem avisando qual o pet foi vacinado */
+
 console.log("VACINAÇÃO: ");
 
 const vacinarPet = (pet) => {
@@ -67,6 +71,10 @@ const vacinarPet = (pet) => {
 }
 }
 
+/* CAMPANHA DE VACINA
+crie uma nova função chamada campanhaVacina que percorre toda lista de pets e vacina todos os pets que precisam!
+imprima o numero de pets vacinados na campanha, exemplo: */
+
 console.log("CAMPANHA DE VACINAÇÃO!")
 
 const campanhaVacina = (pet) => {
@@ -78,8 +86,27 @@ const campanhaVacina = (pet) => {
             vacinarPet(pet); 
             
         }
-        console.log('Qauntidade de pets vacinados na campanha: '+ pets_vacinados);
+        console.log('Quantidade de pets vacinados na campanha: '+ pets_vacinados);
         
     }
     campanhaVacina(pets);
+
+    console.log("NOVO CLIENTE!");
+
+    const adicionarPet = (nome, tipo, idade, raca, tutor, contato, vacinado, servicos) => {
+        novoPet ={
+            nome: nome,
+            tipo: tipo,
+            idade: idade,
+            raca: raca,
+            tutor: tutor,
+            contato: contato,
+            vacinado: vacinado,
+            servicos: servicos
+        }
+        pets.push(novoPet);
+        return pets[pets.length-1];
+    }
+
+    console.log(adicionarPet('Cocada', 'Gato', 2, '---', 'Paula', '(81) 99999-9999', false, ''));
 
