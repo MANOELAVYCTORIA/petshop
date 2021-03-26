@@ -1,6 +1,6 @@
 
 var moment = require('moment'); // require
-
+var pets = require("./db.json")
 
 /* var idade = 25; 
 let nome = 'Manu';
@@ -8,7 +8,7 @@ const sobrenome = 'Vyctoria'; */
 
 const nomePetshop = "PETSHOP AVANADE";
 
-let pets = [{
+/*let pets = [{
     nome: 'Toby',
     tipo: 'Cachorro',
     idade: 13,
@@ -41,10 +41,10 @@ let pets = [{
     vacinado: false,
     servicos: ['banho']
 }
-];
+];*/
 
 const listarPets = () => {
-    for(let pet of pets){
+    for(let pet of pets){ //passando por toda a lista
     //for(let i = 0; i < pets.length; i++){
         //console.log(pets[i].nome);
         //console.log(`O nome do pet é ${pets[i].nome}`);
@@ -73,6 +73,7 @@ const vacinarPet = (pet) => {
     console.log('O pet já estava vacinado');
 }
 }
+vacinarPet(pets[2]);
 
 /* CAMPANHA DE VACINA
 crie uma nova função chamada campanhaVacina que percorre toda lista de pets e vacina todos os pets que precisam!
@@ -145,6 +146,9 @@ const campanhaVacina = (pet) => {
     tosarPet(pets[1]);
     darBanhoPet(pets[3]);
 
-
+    console.log("\n");
+    for (const pet of pets) {
+        console.log(pet);
+    }
 
 
