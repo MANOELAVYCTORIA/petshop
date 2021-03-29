@@ -62,7 +62,7 @@ const listarPets = () => {
         //console.log(`O nome do pet é ${pets[i].nome}`);
         //template string
         console.log(`O nome do pet é ${pet.nome}, ${pet.idade}, ${pet.tipo}, ${pet.raca}`);
-
+        console.log(pet.vacinado ? 'o pet já está vacinado!' : 'o pet ainda não foi vacinado!');
     }
 }
 
@@ -150,10 +150,14 @@ const campanhaVacina = (pet) => {
     console.log("CALLBACK")
 
     const atendercliente = (pet, servicos) => {
+        console.log(`Bem vindo ${pet.nome}!`)
         servicos(pet);
+        console.log(`Obrigada por vim ${pet.nome}`)
     }
-    //atendercliente(db.pets[0], darBanhoPet );
-
+   
+    atendercliente(db.pets[0], darBanhoPet);
+    //atendercliente(db.pets[1], tosarPet);
+    //atendercliente(db.pets[1], apararUnhasPet);
 
     
 
