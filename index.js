@@ -1,6 +1,18 @@
 
 var moment = require('moment'); // require
-var pets = require("./db.json")
+//var pets = require("./db.json");
+
+const fs = require('fs');
+let db = fs.readFileSync('./db.json', 'utf-8');
+
+db = JSON.parse(db);
+
+const atualizardb = () =>{
+    //conversão de objeto javascritp para JSON
+    let petsAtualizado = JSON.stringify(db);
+    //atualização do arquivo db.json
+    fs.writeFileSync('db.json', petsAtualizado, 'utf-8');
+}
 
 /* var idade = 25; 
 let nome = 'Manu';
@@ -44,7 +56,7 @@ const nomePetshop = "PETSHOP AVANADE";
 ];*/
 
 const listarPets = () => {
-    for(let pet of pets){ //passando por toda a lista
+    for(let pet of db.pets){ //passando por toda a lista
     //for(let i = 0; i < pets.length; i++){
         //console.log(pets[i].nome);
         //console.log(`O nome do pet é ${pets[i].nome}`);
@@ -54,7 +66,7 @@ const listarPets = () => {
     }
 }
 
-listarPets();
+//listarPets();
 
 /* console.log(pet);*/
 
@@ -73,7 +85,7 @@ const vacinarPet = (pet) => {
     console.log('O pet já estava vacinado');
 }
 }
-vacinarPet(pets[2]);
+//vacinarPet(pets[2]);
 
 /* CAMPANHA DE VACINA
 crie uma nova função chamada campanhaVacina que percorre toda lista de pets e vacina todos os pets que precisam!
@@ -83,7 +95,7 @@ console.log("CAMPANHA DE VACINAÇÃO!")
 
 const campanhaVacina = (pet) => {
     var pets_vacinados = 0;
-    for(pet of pets){
+    for(pet of db.pets){
         if (!pet.vacinado){
             pets_vacinados++;
         }
@@ -93,62 +105,75 @@ const campanhaVacina = (pet) => {
         console.log('Quantidade de pets vacinados na campanha: '+ pets_vacinados);
         
     }
-    campanhaVacina(pets);
+    //campanhaVacina(pets);
 
     console.log("NOVO CLIENTE!");
 
-    const adicionarPet = (nome, tipo, idade, raca, tutor, contato, vacinado, servicos) => {
-        novoPet ={
-            nome: nome,
-            tipo: tipo,
-            idade: idade,
-            raca: raca,
-            tutor: tutor,
-            contato: contato,
-            vacinado: vacinado,
-            servicos: servicos
-        }
-        pets.push(novoPet);
-        return pets[pets.length-1];
+    const adicionarPet = novoPet =>  {
+       db.pets.push(novoPet);
+       atualizardb();
+       console.log(`${novoPet.nome} novo pet adicionado`);
     }
 
-    console.log(adicionarPet('Cocada', 'Gato', 2, '---', 'Paula', '(81) 99999-9999', false, []));
+   
 
     console.log("ADICIONANDO SERVIÇOS")
 
     //includes serve para ver se o array tá preenchido
 
     const darBanhoPet = (pet) => {
-        if (!pet.servicos.includes('banho')){
-            pet.servicos.push('banho');
-            console.log(moment().format("L - LTS"));
-            console.log(`${pet.nome} está de banho tomado!`);
+         
+            pet.servicos.push({
+                servicos: 'Banho',
+                data: moment().format("L - LTS")});
+                console.log(`${pet.nome} está de banho tomado!`);
         }
-    }
+    
 
     const tosarPet = (pet) => {
-        if (!pet.servicos.includes('tosa')){
-            pet.servicos.push('tosa');
-            console.log(moment().format("L - LTS"));
+        
+            pet.servicos.push({
+             servicos: 'tosa',
+             data: moment().format("L - LTS")});
             console.log(`${pet.nome} está com o cabelinho na régua!`);
         }
-    }
+    
 
     const apararUnhasPet = (pet) => {
-        if (!pet.servicos.includes('unha')){
-            pet.servicos.push('unha');
-            console.log(moment().format("L - LTS"));
+        
+            pet.servicos.push({
+            data: moment().format("L - LTS")});
             console.log(`${pet.nome} está de unhas aparadas!`);
         }
+    
+
+    console.log("CALLBACK")
+
+    const atendercliente = (pet, servicos) => {
+        servicos(pet);
     }
+    //atendercliente(db.pets[0], darBanhoPet );
 
-    apararUnhasPet(pets[2]);
-    tosarPet(pets[1]);
-    darBanhoPet(pets[3]);
 
-    console.log("\n");
+    
+
+  /*  console.log("\n");
     for (const pet of pets) {
         console.log(pet);
-    }
+    } */
+
+    //listarPets();
+
+     adicionarPet({
+        "nome": "Romarinho",
+        "tipo": "cachorro",
+         "idade": 3,
+        "raca": "American",
+        "peso": 28,
+         "tutor": "Bruno",
+         "contato": "(11) 99999-9999",
+        "vacinado": true,
+       "servicos": []
+    });
 
 

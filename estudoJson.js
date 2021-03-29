@@ -44,3 +44,20 @@ let pets = [{
 }]
 
 console.log(JSON.stringify(pets));
+
+const atendercliente = (pet, servicos) => {
+    console.log(`Olá, ${pet.nome}`);
+
+    servicos();
+    console.log('Tchau, até mais!')
+}
+
+const darBanho = () => {
+    console.log("Dando banho no pet...");
+}
+
+const apararUnhas = () => {
+    console.log('Aparando unhas...')
+}
+atendercliente(pets[0], darBanho);
+atendercliente(pets[1], apararUnhas);
