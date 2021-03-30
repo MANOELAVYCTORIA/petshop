@@ -59,5 +59,19 @@ const darBanho = () => {
 const apararUnhas = () => {
     console.log('Aparando unhas...')
 }
-atendercliente(pets[0], darBanho);
-atendercliente(pets[1], apararUnhas);
+// atendercliente(pets[0], darBanho);
+// atendercliente(pets[1], apararUnhas);
+
+//DESESTRUTURAÇÃO 
+
+console.log('-----------------');
+
+let pessoa = {
+    nome: 'Manoela',
+    idade: 21,
+    profissao: 'Estagiaria',
+    contato: '(81) 99999-9999',
+    habilidades: ['node.js', 'html']
+}
+let {nome, contato} = pessoa;
+console.log(`${nome} - ${contato}`);
